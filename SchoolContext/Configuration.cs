@@ -1,5 +1,4 @@
-﻿using Migrations.Models;
-using SchoolDBContext;
+﻿using SchoolContext.Models;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 
@@ -14,20 +13,17 @@ namespace SchoolDBContext.Migrations
 
         protected override void Seed(SchoolDbContext context)
         {
-            var students = new List<Student>
-            {
-                new Student { Name = "Carson",   Surname = "Alexander" },
-                new Student { Name = "Meredith", Surname = "Alonso"},
-                new Student { Name = "Arturo",   Surname = "Anand"},
-                new Student { Name = "Gytis",    Surname = "Barzdukas"},
-                new Student { Name = "Yan",      Surname = "Li"},
-                new Student { Name = "Peggy",    Surname = "Justice"},
-                new Student { Name = "Laura",    Surname = "Norman"},
-                new Student { Name = "Nino",     Surname = "Olivetto"}
-            };
-
-            //students.ForEach(s => context.Studen.AddOrUpdate(p => p.LastName, s));
-            //context.SaveChanges();
+            context.Students.AddOrUpdate(r => r.Name,
+                new Student { Name = "Carson", Surname = "Alexander" },
+                new Student { Name = "Meredith", Surname = "Alonso" },
+                new Student { Name = "Arturo", Surname = "Anand" },
+                new Student { Name = "Gytis", Surname = "Barzdukas" },
+                new Student { Name = "Yan", Surname = "Li" },
+                new Student { Name = "Peggy", Surname = "Justice" },
+                new Student { Name = "Laura", Surname = "Norman" },
+                new Student { Name = "Nino", Surname = "Olivetto" }
+            );
+            context.SaveChanges();
 
             var courses = new List<Course>
             {

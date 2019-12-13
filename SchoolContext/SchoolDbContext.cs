@@ -1,14 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Migrations.Models;
-using System;
+﻿using SchoolContext.Models;
+using System.Data.Entity;
 
 namespace SchoolDBContext
 {
-    public class SchoolDbContext : System.Data.Entity.DbContext
+    public class SchoolDbContext : DbContext
     {
         public SchoolDbContext() : base("SchoolDB")
         {
-            System.Data.Entity.Database.SetInitializer(new System.Data.Entity.MigrateDatabaseToLatestVersion<SchoolDbContext, Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SchoolDbContext, Migrations.Configuration>());
         }
 
         public DbSet<Instatution> Entity { get; set; }
@@ -18,7 +17,7 @@ namespace SchoolDBContext
         public DbSet<CourseSubject> CourseSubjects { get; set; }
         public DbSet<StudentCourse> StudentCourse { get; set; }
 
-        protected void OnModelCreating(ModelBuilder modelBuilder)
+        protected void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //Declare composite keys for Bridging Tables
             modelBuilder.Entity<StudentCourse>().HasKey(sc => new { sc.StudentId, sc.CourseId });

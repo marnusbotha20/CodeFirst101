@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Migrations.Models
+namespace SchoolContext.Models
 {
     public class CourseSubject
     {

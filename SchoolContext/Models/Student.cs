@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Migrations.Models
+namespace SchoolContext.Models
 {
     public class Student
     {
@@ -14,3 +14,4 @@ namespace Migrations.Models
         public ICollection<StudentCourse> CourseList { get; set; }
     }
 }
+
