@@ -1,22 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SchoolContext.Models;
+using Migrations.Models;
 using System;
 
 namespace SchoolDBContext
 {
-    public class SchoolDbContext : DbContext
+    public class SchoolDbContext : System.Data.Entity.DbContext
     {
-        public SchoolDbContext(DbContextOptions<SchoolDbContext> options) : base(options) { }
+        public SchoolDbContext() : base("SchoolDB")
+        {
+            System.Data.Entity.Database.SetInitializer(new System.Data.Entity.MigrateDatabaseToLatestVersion<SchoolDbContext, Migrations.Configuration>());
+        }
 
-        public SchoolDbContext() { }
+        public DbSet<Instatution> Entity { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Subjects> Subjects { get; set; }
+        public DbSet<CourseSubject> CourseSubjects { get; set; }
+        public DbSet<StudentCourse> StudentCourse { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Declare composite keys for Bridging Tables
             modelBuilder.Entity<StudentCourse>().HasKey(sc => new { sc.StudentId, sc.CourseId });
             modelBuilder.Entity<CourseSubject>().HasKey(cs => new { cs.CourseId, cs.SubjectId });
 
-            modelBuilder.Entity<Entity>().HasMany(e => e.StudentList);
+            modelBuilder.Entity<Instatution>().HasMany(e => e.StudentList);
 
             modelBuilder.Entity<StudentCourse>()
                 .HasOne(sc => sc.Student)
@@ -41,14 +49,7 @@ namespace SchoolDBContext
 
         }
 
-        public DbSet<Entity> Entity { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<Subjects> Subjects { get; set; }
-        public DbSet<CourseSubject> CourseSubjects { get; set; }
-        public DbSet<StudentCourse> StudentCourse { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=MARNUS-LT;Database=SchoolDB;Trusted_Connection=True;");
         }

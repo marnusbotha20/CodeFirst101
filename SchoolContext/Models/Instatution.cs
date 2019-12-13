@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchoolContext.Models
+namespace Migrations.Models
 {
-    public class Entity
+    public class Instatution
     {
         public int Id { get; set; }
         public string EntityName { get; set; }

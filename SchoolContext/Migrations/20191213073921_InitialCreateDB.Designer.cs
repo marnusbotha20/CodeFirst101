@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolDBContext;
 
-namespace SchoolContext.Migrations
+namespace Migrations.Migrations
 {
     [DbContext(typeof(SchoolDbContext))]
     [Migration("20191213073921_InitialCreateDB")]

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace SchoolContext.Models
+namespace Migrations.Models
 {
     public class Subjects
     {

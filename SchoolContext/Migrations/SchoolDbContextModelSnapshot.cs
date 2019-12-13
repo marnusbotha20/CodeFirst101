@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolDBContext;
 
-namespace SchoolContext.Migrations
+namespace Migrations.Migrations
 {
     [DbContext(typeof(SchoolDbContext))]
     partial class SchoolDbContextModelSnapshot : ModelSnapshot
